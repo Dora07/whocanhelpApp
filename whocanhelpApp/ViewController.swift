@@ -1,19 +1,44 @@
-//
-//  ViewController.swift
-//  whocanhelpApp
-//
-//  Created by 謝孟芩 on 2021/1/26.
-//
-
 import UIKit
 
+
+let showImages  = ["01","02","03"]
+let showLabel = ["肥皂勤洗手","出門戴口罩","少出門少去人多場所"]
+
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
+    //圖片
+    @IBOutlet weak var changeImage: UIImageView!
+    
+    //文字
+    @IBOutlet weak var changeLabel: UILabel!
+    //SegmrntedController outlet
+    @IBOutlet weak var changeSegmentalControl: UISegmentedControl!
+    
+    var num = 0
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+     
     }
+    
 
-
+    
+    //SegmrntedController action
+    @IBAction func SegmrntedController(_ sender: UISegmentedControl)
+    {
+        num = Int(sender.selectedSegmentIndex)
+        changeImage.image = UIImage(named: showImages[num])
+        changeLabel.text = showLabel[num]
+    }
+    
+    @IBAction func randomNumber(_ sender: UIButton)
+    {
+        num = Int.random(in:0...2)
+        changeImage.image = UIImage(named: showImages[num])
+        changeLabel.text = showLabel[num]
+        //SegmrntedController更改
+        changeSegmentalControl.selectedSegmentIndex = num
+    }
+    
 }
 
